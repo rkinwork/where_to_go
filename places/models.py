@@ -14,8 +14,8 @@ class Place(models.Model):
     description_long = models.TextField("Полное описание",
                                         help_text="Полное описание точки",
                                         )
-    lat = models.FloatField('Широта')
-    long = models.FloatField('Долгота')
+    lat = models.DecimalField('Широта', max_digits=9, decimal_places=6)
+    long = models.DecimalField('Долгота', max_digits=9, decimal_places=6)
 
     def __str__(self):
         return self.title
