@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.urls import reverse
+
 from places.models import Place
 
 
@@ -13,7 +15,7 @@ def generate_feature(place: Place) -> dict:
         "properties": {
             "title": place.title,
             "placeId": place.id,
-            "detailsUrl": "https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/moscow_legends.json"
+            "detailsUrl": reverse(show_place, kwargs={'by_id': place.id})
         }
     }
 
