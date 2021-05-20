@@ -44,7 +44,7 @@ def show_index(request):
     return render(request, "index.html", context=data)
 
 
-def show_place(request, by_id):
+def show_place(request, by_id: int):
     place_queryset = Place.objects.prefetch_related('images')
     place = get_object_or_404(place_queryset, pk=by_id)
     return JsonResponse(
