@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'places.apps.PlacesConfig',
     'debug_toolbar',
+    'adminsortable2',
 ]
 
 MIDDLEWARE = [

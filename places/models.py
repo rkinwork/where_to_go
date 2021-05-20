@@ -38,7 +38,7 @@ class Image(models.Model):
                               )
 
     sorting_priority = models.PositiveSmallIntegerField('Сортировка',
-                                                        default=1,
+                                                        default=0,
                                                         blank=True,
                                                         help_text='приоритет сортировки, по умолчанию 1',
                                                         )
