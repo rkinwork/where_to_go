@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -11,9 +12,9 @@ class Place(models.Model):
     description_short = models.TextField("Короткое описание ",
                                          help_text="Короткое описание точки",
                                          )
-    description_long = models.TextField("Полное описание",
-                                        help_text="Полное описание точки",
-                                        )
+    description_long = HTMLField("Полное описание",
+                                 help_text="Полное описание точки",
+                                 )
     lat = models.DecimalField('Широта', max_digits=9, decimal_places=6)
     long = models.DecimalField('Долгота', max_digits=9, decimal_places=6)
 
