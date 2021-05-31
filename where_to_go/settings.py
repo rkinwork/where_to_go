@@ -126,7 +126,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = env.str("SECRET_KEY", default='')
 
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath('static').as_posix()
 ]
 
 MEDIA_URL = '/media/'
