@@ -48,12 +48,20 @@ python manage.py migrate
 
 ### Первичное наполнение данными
 
+Написанные на коленке скрипт который вытащит специально подготовленный данные с гитхаба 
 ```bash
-python manage.py load_place 
+python manage.py extract_json_links https://github.com/devmanorg/where-to-go-places/tree/master/places
 ```
 
+Если нужно загрузить только одно место, то можно воспользоваться другой командой
+```bash
+python manage.py load_place <url_to_json_file.json>
+```
+
+Посмотрите для примера [эту ссылку](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/Антикафе%20Bizone.json) данные поля в ней являются обязательными.
+
 ### Подготовка админки
-Что бы войти в админку нужно будет создать супер пользователя.
+Что бы войти в админку нужно будет прежде создать супер пользователя.
 ```bash
 python manage.py createsuperuser
 ```
