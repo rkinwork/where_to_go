@@ -40,8 +40,10 @@ def show_index(request):
         "features": [generate_feature(place) for place in places]
     }
 
-    data = {'places_geojson': places_geojson}
-    return render(request, "index.html", context=data)
+    return render(request, "index.html", context={
+        'places_geojson': places_geojson,
+    },
+                  )
 
 
 def show_place(request, by_id: int):

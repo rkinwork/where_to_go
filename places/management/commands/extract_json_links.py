@@ -1,4 +1,3 @@
-import argparse
 from urllib.parse import urljoin
 
 from django.core.management.base import BaseCommand, CommandError
