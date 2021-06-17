@@ -20,28 +20,13 @@ def generate_feature(place: Place) -> dict:
     }
 
 
-def generate_place_info(place: Place) -> dict:
-    return {
-        "title": place.title,
-        "imgs": [image_instance.image.url for image_instance in place.images.all()],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
-        "coordinates": {
-            "lat": place.lat,
-            "lng": place.long
-        }
-    }
-
-
 def show_index(request):
-    places = Place.objects.all()
-    places_geojson = {
-        "type": "FeatureCollection",
-        "features": [generate_feature(place) for place in places]
-    }
-
     return render(request, "index.html", context={
-        'places_geojson': places_geojson,
+        'places_geojson': {
+            "type": "FeatureCollection",
+            "features": [generate_feature(place)
+                         for place in Place.objects.all()]
+        },
     },
                   )
 
@@ -50,7 +35,16 @@ def show_place(request, by_id: int):
     place_queryset = Place.objects.prefetch_related('images')
     place = get_object_or_404(place_queryset, pk=by_id)
     return JsonResponse(
-        data=generate_place_info(place),
+        data={
+            "title": place.title,
+            "imgs": [image_instance.image.url for image_instance in place.images.all()],
+            "description_short": place.description_short,
+            "description_long": place.description_long,
+            "coordinates": {
+                "lat": place.lat,
+                "lng": place.long
+            }
+        },
         json_dumps_params={
             'indent': 2,
             'ensure_ascii': False,

@@ -19,16 +19,17 @@ class Command(BaseCommand):
             type=URLType())
 
     def handle(self, *args, **options):
-        gh_url = options['gh_url']
-        with requests.get(gh_url) as req:
+        with requests.get(options['gh_url']) as req:
             if not req.ok:
-                raise CommandError(f'Problems with accessing {gh_url}')
+                raise CommandError(
+                    f'Problems with accessing {options["gh_url"]}'
+                )
             response_text = req.text
 
         soup = BeautifulSoup(response_text, 'lxml')
         links = soup.select('a[title$=".json"]')
-        for extracted_link_tag in links:
-            updated_url = extracted_link_tag['href'].replace('/blob', '')
+        for link_tag in links:
+            updated_url = link_tag['href'].replace('/blob', '')
             json_url = urljoin(
                 GITHUB_RAW_HOST,
                 str(updated_url),
