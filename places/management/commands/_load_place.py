@@ -47,8 +47,6 @@ PLACE_SCHEMA = {
     'required': [
         'title',
         'imgs',
-        'description_short',
-        'description_long',
         'coordinates',
     ]
 }
@@ -84,8 +82,8 @@ def load_place_from_url(url: str):
     place, created = Place.objects.get_or_create(
         title=parsed_place['title'],
         defaults={
-            'description_short': parsed_place['description_short'],
-            'description_long': parsed_place['description_long'],
+            'description_short': parsed_place.get('description_short', ''),
+            'description_long': parsed_place.get('description_long', ''),
             'long': parsed_place['coordinates']['lng'],
             'lat': parsed_place['coordinates']['lat']
 
