@@ -26,9 +26,9 @@ class Image(models.Model):
     """Model representing places images"""
     title = models.CharField('Имя картинки',
                              max_length=200,
-                             null=True,
                              blank=True,
                              help_text="Название картинки",
+                             default='',
                              )
 
     place = models.ForeignKey(Place,
