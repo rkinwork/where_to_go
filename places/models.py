@@ -11,12 +11,10 @@ class Place(models.Model):
                              )
     description_short = models.TextField("Короткое описание ",
                                          blank=True,
-                                         default='',
                                          help_text="Короткое описание точки",
                                          )
     description_long = HTMLField("Полное описание",
                                  blank=True,
-                                 default='',
                                  help_text="Полное описание точки",
                                  )
     lat = models.DecimalField('Широта', max_digits=9, decimal_places=6)
@@ -32,7 +30,6 @@ class Image(models.Model):
                              max_length=200,
                              blank=True,
                              help_text="Название картинки",
-                             default='',
                              )
 
     place = models.ForeignKey(Place,
