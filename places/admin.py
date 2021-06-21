@@ -4,7 +4,7 @@ from adminsortable2.admin import SortableInlineAdminMixin
 
 from .models import Place, Image
 
-IMAGE_PREVIEW_HTML_TMP = """<img src="{url}" max-height = 200px width = 200 />"""
+IMG_PRVW_HTML_TEMPLATE = """<img src="{url}" max-height = 200px width = 200 />"""
 
 
 # Register your models here.
@@ -21,7 +21,7 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     )
 
     def image_preview(self, image: Image):
-        return format_html(IMAGE_PREVIEW_HTML_TMP,
+        return format_html(IMG_PRVW_HTML_TEMPLATE,
                            url=image.image.url,
                            )
 
