@@ -36,13 +36,14 @@ class Image(models.Model):
                               verbose_name='Место',
                               related_name='images',
                               on_delete=models.CASCADE,
-                              help_text='К какому месту отнести картинку'
+                              help_text='К какому месту отнести картинку',
                               )
 
+    sort_help_txt = 'приоритет сортировки, по умолчанию 1'
     sorting_priority = models.PositiveSmallIntegerField('Сортировка',
                                                         default=0,
                                                         blank=True,
-                                                        help_text='приоритет сортировки, по умолчанию 1',
+                                                        help_text=sort_help_txt,
                                                         )
 
     image = models.ImageField(help_text='Изображение для модели')
